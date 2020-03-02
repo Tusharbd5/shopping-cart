@@ -114,7 +114,7 @@
    })
    //Phone minus Button Event handler
    const phoneMinusButtonCheck = document.getElementById("phone-minus-button");
-   phoneMinusButtonCheck.addEventListener("click", function(){
+      phoneMinusButtonCheck.addEventListener("click", function(){
       phoneTextUpdate("phone-cart-no",-1);
       const phoneCart = phoneCartUpdate("phone-cart", -1219);
 
@@ -123,7 +123,9 @@
       document.getElementById("sub-total").innerText = phoneCaseUpdate(phoneCart,caseCartNumber);
 
       finalAmountCheck("total-amount", "sub-total");
-   })
+           
+   }) 
+
    //Case Minus Button Event handler
    const caseMinusButtonCheck = document.getElementById("case-minus-button");
    caseMinusButtonCheck.addEventListener("click", function(){
@@ -138,17 +140,23 @@
    })
    function phoneTextUpdate(id, givenNumber){
       const getNumber = document.getElementById(id).value;
-      const getNumberDigit = parseFloat(getNumber);
+      const getNumberDigit = parseFloat(getNumber); 
       const totalAmount = getNumberDigit + givenNumber;
-      document.getElementById(id).value = totalAmount;
-      return totalAmount;
-   }
+      if(totalAmount>=0){
+         document.getElementById(id).value = totalAmount;
+         return totalAmount;
+      }else return 0;   
+       }
    function phoneCartUpdate(id, givenNumber){
       const getNumber = document.getElementById(id).innerText;
       const getNumberDigit = parseFloat(getNumber);
-      const totalAmount = getNumberDigit + givenNumber;
-      document.getElementById(id).innerText = totalAmount;
-      return totalAmount;
+         const totalAmount = getNumberDigit + givenNumber;
+         if(totalAmount>=0){
+            document.getElementById(id).innerText = totalAmount;
+            return totalAmount;
+         }else return 0;
+         
+        
    }
    function phoneCaseUpdate(firstNumber, secondNumber){
       const totalAmount = firstNumber + secondNumber;
